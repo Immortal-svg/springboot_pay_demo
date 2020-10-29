@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.pay.controller;
 
 import com.example.demo.common.utils.IpUtil;
 import org.springframework.web.bind.annotation.RequestMapping;

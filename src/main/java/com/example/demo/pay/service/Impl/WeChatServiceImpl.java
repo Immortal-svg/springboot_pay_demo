@@ -1,10 +1,10 @@
-package com.example.demo.service.Impl;
+package com.example.demo.pay.service.Impl;
 
 
 import com.example.demo.common.constants.Message;
 import com.example.demo.common.enums.ResponseEnum;
 import com.example.demo.common.utils.*;
-import com.example.demo.service.WeChatService;
+import com.example.demo.pay.service.WeChatService;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.crypto.Data;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -25,11 +24,11 @@ public class WeChatServiceImpl implements WeChatService {
 
     private final static Logger logger = LoggerFactory.getLogger(WeChatServiceImpl.class);
 
-    private static String API_KEY = "*********";
+    private static String API_KEY = "DXJg5dTwtDh5WvMHvdzPI9IJCIe2PW90";
 
-    private static  String APP_ID="********";//公众账号ID wx0935069dd3d5cf4e
+    private static  String APP_ID="wx0935069dd3d5cf4e";//公众账号ID wx0935069dd3d5cf4e
 
-    private static String MCH_ID="*******";//商户号
+    private static String MCH_ID="1594836381";//商户号
 
     private static String NOTIFY_URL="https://agent.touchsms.cn/api/wx/wxPayCallBlack";//回调地址
 

@@ -177,6 +177,13 @@ public class DateUtil {
         return dateStr;
     }
 
+    public static String format(Date date, String pattern) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+
+        return sdf.format(date);
+    }
+
     public static Date getAdjustDate(Date date, int field, int amount) {
         if ((date == null)) {
             return null;

@@ -1,18 +1,16 @@
-package com.example.demo.controller;
+package com.example.demo.pay.controller;
 
 
 
 import com.example.demo.common.constants.Message;
 import com.example.demo.common.enums.ResponseEnum;
-import com.example.demo.service.WeChatService;
+import com.example.demo.pay.service.WeChatService;
 import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.HttpResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 

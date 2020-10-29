@@ -1,4 +1,4 @@
-package com.example.demo.po;
+package com.example.demo.pay.po;
 
 import lombok.Data;
 
