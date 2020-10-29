@@ -25,11 +25,11 @@ public class WeChatServiceImpl implements WeChatService {
 
     private final static Logger logger = LoggerFactory.getLogger(WeChatServiceImpl.class);
 
-    private static String API_KEY = "DXJg5dTwtDh5WvMHvdzPI9IJCIe2PW90";
+    private static String API_KEY = "*********";
 
-    private static  String APP_ID="wx0935069dd3d5cf4e";//公众账号ID wx0935069dd3d5cf4e
+    private static  String APP_ID="********";//公众账号ID wx0935069dd3d5cf4e
 
-    private static String MCH_ID="1594836381";//商户号
+    private static String MCH_ID="*******";//商户号
 
     private static String NOTIFY_URL="https://agent.touchsms.cn/api/wx/wxPayCallBlack";//回调地址
 
