@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.common.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
