@@ -5,13 +5,12 @@ import com.example.demo.common.constants.Message;
 import com.example.demo.common.enums.ResponseEnum;
 import com.example.demo.common.utils.DateUtil;
 import com.example.demo.common.utils.MD5Utils;
-import com.example.demo.wechat.service.WeChatService;
+import com.example.demo.wechat.service.WeChatLoginService;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,7 @@ import java.util.Date;
  */
 @Service
 @Slf4j
-public class WeChatServiceImpl implements WeChatService {
+public class WeChatLoginServiceImpl implements WeChatLoginService {
 
 
     @Autowired

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 微信
  */
-public interface WeChatService {
+public interface WeChatLoginService {
     /**
      * 微信扫码登录请求地址的生成
      * @return

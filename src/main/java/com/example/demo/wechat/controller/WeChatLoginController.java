@@ -3,7 +3,7 @@ package com.example.demo.wechat.controller;
 
 import com.example.demo.common.constants.Message;
 import com.example.demo.common.enums.ResponseEnum;
-import com.example.demo.wechat.service.WeChatService;
+import com.example.demo.wechat.service.WeChatLoginService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,12 +22,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 @RequestMapping("/api/wxLong")
-public class WeChatController {
+public class WeChatLoginController {
 
-    private Logger logger = LoggerFactory.getLogger(WeChatController.class);
+    private Logger logger = LoggerFactory.getLogger(WeChatLoginController.class);
 
     @Autowired
-    private WeChatService weChatService;
+    private WeChatLoginService weChatLoginService;
 
     /**
      * 获取微信登陆二维码地址
@@ -37,7 +37,7 @@ public class WeChatController {
     public Message getQRCodeUrl() {
         logger.info("获取二维码地址");
         try {
-            String codeUrl = weChatService.getQRCodeUrl();
+            String codeUrl = weChatLoginService.getQRCodeUrl();
             logger.info("codeUrl:"+codeUrl);
             return new Message(ResponseEnum.SUCCESS,codeUrl);
         }catch (Exception e){
@@ -64,7 +64,7 @@ public class WeChatController {
         logger.info("微信回调------------");
         logger.info(code+"------"+state);
         try {
-            Message  message=weChatService.wxCallBack(request,code, state);
+            Message  message= weChatLoginService.wxCallBack(request,code, state);
             return message;
         }catch (Exception e){
             logger.error(e.toString()+"\n"+e);
