@@ -28,7 +28,7 @@ public class Swagger2Config {
                         .version("版本号:1.0")
                         .build())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.fzm"))
+                .apis(RequestHandlerSelectors.basePackage("com.example"))
                 .paths(PathSelectors.any())
                 .build();
     }

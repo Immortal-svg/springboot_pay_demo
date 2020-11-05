@@ -4,6 +4,7 @@ package com.example.demo.pay.controller;
 
 import com.example.demo.common.constants.Message;
 import com.example.demo.common.enums.ResponseEnum;
+import com.example.demo.common.utils.IpUtil;
 import com.example.demo.pay.service.WeChatService;
 import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -47,14 +49,12 @@ public class WeChatController {
      * @return
      */
     @RequestMapping(value = "/wxPayCallBlack")
-    public ModelAndView wxPayCallBlack(HttpServletRequest request, HttpServletResponse response){
+    public void wxPayCallBlack(HttpServletRequest request, HttpServletResponse response){
        try {
-           Message message = weChatService.weixin_notify(request, response);
+           weChatService.weixin_notify(request, response);
        }catch (Exception e){
-           logger.info(e.toString(),e);
-       }//跳转页面
-        ModelAndView mv = new ModelAndView("test");
-        return  mv;
+           logger.info("微信h5回调异常：{}"+e.toString(),e);
+       }
     }
 
     /**
@@ -67,11 +67,13 @@ public class WeChatController {
      */
     @RequestMapping(value = "/wxPayOrderQuery")
     public Message wxPayOrderQuery(HttpServletRequest request, HttpServletResponse response,
-                                   String outTradeNo){
+                                  @RequestParam(defaultValue = "") String outTradeNo){
         if (StringUtils.isBlank(outTradeNo)) {
             return new Message(ResponseEnum.ERROR_ISEXITNULL);
         }
-        Message message = weChatService.weChatOrderQuery(request, "1324564132");
+        logger.info("订单号查看：{}"+outTradeNo);
+        Message message = weChatService.weChatOrderQuery(request, outTradeNo);
+        logger.info("查询状态msg：{}"+message.getMsg()+"code：{}"+message.getCode());
         return  message;
     }
 

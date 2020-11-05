@@ -11,9 +11,7 @@ public interface WeChatService {
 
     Message WeChatPay(HttpServletRequest request);
 
-    Message weixin_notify(HttpServletRequest request, HttpServletResponse response);
+    void weixin_notify(HttpServletRequest request, HttpServletResponse response);
 
     Message weChatOrderQuery(HttpServletRequest request,String out_trade_no);
-
-    Message weCharRefund(HttpServletRequest request,String orderNo,String totalFee);
 }

@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/api/ip")
+@RequestMapping("/api")
 public class IpController {
 
-    @RequestMapping(value = "/getIp")
+    @RequestMapping(value = "/ip")
     public Object t(HttpServletRequest request) {
         return IpUtil.getIp(request);
     }

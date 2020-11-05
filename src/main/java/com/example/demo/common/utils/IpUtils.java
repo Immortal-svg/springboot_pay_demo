@@ -49,40 +49,6 @@ public final class IpUtils {
         return ip;
     }
 
-    public static String getIp(HttpServletRequest request) {
-        String ipAddress = request.getHeader("X-Forwarded-For");
-        if (StringUtils.isBlank(ipAddress) || ipAddress.toLowerCase().contains("unknown")) {
-            ipAddress = request.getRemoteAddr();
-
-            if (ipAddress.equals("127.0.0.1") || ipAddress.equals("0:0:0:0:0:0:0:1")) {
-                // 根据网卡取本机配置的IP
-                InetAddress inet = null;
-                try {
-                    inet = InetAddress.getLocalHost();
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                }
-                if (inet != null) {
-                    ipAddress = inet.getHostAddress();
-                }
-            }
-        }
-        // 对于通过多级反向代理的情况，第一个非 unknown的IP为客户端真实IP,多个IP按照','分割
-        if (ipAddress != null && ipAddress.indexOf(",") > -1) {
-            String[] ipAddressArray = ipAddress.trim().split(",");
-            for (int i = 0; i < ipAddressArray.length; i++) {
-                if (StringUtils.isNotBlank(ipAddressArray[i])) {
-                    ipAddress = ipAddressArray[i];
-                    break;
-                }
-            }
-        }
-        if (ipAddress != null) {
-            ipAddress = ipAddress.trim();
-        }
-        return ipAddress;
-    }
-
     public static String getHostName(InetAddress netAddress) {
         if (null == netAddress) {
             return null;
@@ -137,5 +103,39 @@ public final class IpUtils {
             logger.error(e.toString(),e);
             return  "127.0.0.1";
         }
+    }
+
+    public static String getIp(HttpServletRequest request) {
+        String ipAddress = request.getHeader("X-Forwarded-For");
+        if (StringUtils.isBlank(ipAddress) || ipAddress.toLowerCase().contains("unknown")) {
+            ipAddress = request.getRemoteAddr();
+
+            if (ipAddress.equals("127.0.0.1") || ipAddress.equals("0:0:0:0:0:0:0:1")) {
+                // 根据网卡取本机配置的IP
+                InetAddress inet = null;
+                try {
+                    inet = InetAddress.getLocalHost();
+                } catch (UnknownHostException e) {
+                    logger.error(e.toString(),e);
+                }
+                if (inet != null) {
+                    ipAddress = inet.getHostAddress();
+                }
+            }
+        }
+        // 对于通过多级反向代理的情况，第一个非 unknown的IP为客户端真实IP,多个IP按照','分割
+        if (ipAddress != null && ipAddress.indexOf(",") > -1) {
+            String[] ipAddressArray = ipAddress.trim().split(",");
+            for (int i = 0; i < ipAddressArray.length; i++) {
+                if (StringUtils.isNotBlank(ipAddressArray[i])) {
+                    ipAddress = ipAddressArray[i];
+                    break;
+                }
+            }
+        }
+        if (ipAddress != null) {
+            ipAddress = ipAddress.trim();
+        }
+        return ipAddress;
     }
 }

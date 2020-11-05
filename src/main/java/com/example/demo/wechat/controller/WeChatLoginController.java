@@ -71,7 +71,7 @@ public class WeChatLoginController {
             return new Message(ResponseEnum.FALL);
         }
     }
-/*
+  /*
     *//**
      * 回调绑定信息接口
      * @param request
